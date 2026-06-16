@@ -34,8 +34,8 @@ def search_book():
             print("Book found.")
             print(f"{' Book Details':-^20}")
             print("Book ID: ", book_id)
-            print("Book title: ", book_id["title"])
-            print("Book Author: ", book_id["author"])
+            print("Book title: ", book_details[book_id]["title"])
+            print("Book Author: ", book_details[book_id]["author"])
 
             if book_id in issued_books:
                 print("Status: Issued")
@@ -107,7 +107,7 @@ def delete_book():
                 books.remove(book)
                 break
 
-        issued_books.remove(book_id)   
+        issued_books.discard(book_id)   
 
         print("Books deleted successfully...")
 
@@ -121,7 +121,7 @@ def show_all_books():
         print(f"{' Library Books ':-^30}")
 
         for book_id, title in books:
-            author = book_details["book_id"]["author"]
+            author = book_details[book_id]["author"]
 
             status = "Issued" if book_id in issued_books else "Available"
 
@@ -154,10 +154,10 @@ def main():
             return_book()
 
         elif choice == 5:
-            delete_book
+            delete_book()
 
         elif choice == 6:
-            show_all_books
+            show_all_books()
 
         elif choice == 7:
             print("Goodbye...")
